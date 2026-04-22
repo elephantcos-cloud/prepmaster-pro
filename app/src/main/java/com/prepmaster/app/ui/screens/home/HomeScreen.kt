@@ -75,7 +75,7 @@ fun HomeScreen(nav: NavController, vm: AppViewModel = viewModel()) {
                     }
                     Spacer(Modifier.height(6.dp))
                     LinearProgressIndicator(
-                        progress = { if (xpNeeded > 0) (xpEarned.toFloat() / xpNeeded).coerceIn(0f, 1f) else 0f },
+                        progress = if (xpNeeded > 0) (xpEarned.toFloat() / xpNeeded).coerceIn(0f, 1f) else 0f,
                         modifier = Modifier.fillMaxWidth().height(8.dp).clip(RoundedCornerShape(4.dp)),
                         color = Gold, trackColor = BgElevated
                     )
@@ -104,7 +104,7 @@ fun HomeScreen(nav: NavController, vm: AppViewModel = viewModel()) {
                     }
                     Spacer(Modifier.height(10.dp))
                     LinearProgressIndicator(
-                        progress = { overallProg },
+                        progress = overallProg,
                         modifier = Modifier.fillMaxWidth().height(10.dp).clip(RoundedCornerShape(5.dp)),
                         color = Cyan, trackColor = BgElevated
                     )
@@ -152,7 +152,7 @@ fun HomeScreen(nav: NavController, vm: AppViewModel = viewModel()) {
                         }
                         Spacer(Modifier.height(4.dp))
                         LinearProgressIndicator(
-                            progress = { catProg },
+                            progress = catProg,
                             modifier = Modifier.fillMaxWidth().height(5.dp).clip(RoundedCornerShape(3.dp)),
                             color = color, trackColor = BgElevated
                         )

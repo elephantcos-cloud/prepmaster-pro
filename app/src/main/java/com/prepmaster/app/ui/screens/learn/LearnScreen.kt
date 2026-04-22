@@ -67,7 +67,7 @@ fun LearnScreen(onCategory: (String) -> Unit, vm: AppViewModel = viewModel()) {
                         Spacer(Modifier.height(12.dp))
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             LinearProgressIndicator(
-                                progress = { prog },
+                                progress = prog,
                                 modifier = Modifier.weight(1f).height(6.dp).clip(RoundedCornerShape(3.dp)),
                                 color = color, trackColor = BgElevated
                             )
