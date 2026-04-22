@@ -89,13 +89,13 @@ fun QuizScreen(vm: AppViewModel = viewModel()) {
             Text("প্রশ্ন ${current+1} / ${questions.size}", style=MaterialTheme.typography.labelLarge, color=Coral)
             Spacer(Modifier.height(6.dp))
             LinearProgressIndicator(
-                progress=(current+1).toFloat()/questions.size,
+                progress={(current+1).toFloat()/questions.size},
                 modifier=Modifier.fillMaxWidth().height(6.dp).clip(RoundedCornerShape(3.dp)),
                 color=Coral, trackColor=BgElevated)
             Spacer(Modifier.height(20.dp))
 
             // Question
-            Card(Modifier.fillMaxWidth(), colors=CardDefaults.cardColors(BgCard), shape=RoundedCornerShape(18.dp)) {
+            Card(modifier=Modifier.fillMaxWidth(), colors=CardDefaults.cardColors(BgCard), shape=RoundedCornerShape(18.dp)) {
                 Column(Modifier.padding(20.dp)) {
                     Surface(shape=RoundedCornerShape(6.dp), color=Coral.copy(0.15f)) {
                         Text(catNames[q.categoryId]?:q.categoryId, modifier=Modifier.padding(8.dp,3.dp),
@@ -121,11 +121,10 @@ fun QuizScreen(vm: AppViewModel = viewModel()) {
                     idx==selected && !isCorrect -> Coral
                     else -> Color.Transparent
                 }
-                Surface(
-                    onClick = { if(!showRes) selected=idx },
-                    modifier = Modifier.fillMaxWidth().padding(vertical=5.dp)
-                        .border(1.5.dp, border, RoundedCornerShape(14.dp)),
-                    color = bg, shape = RoundedCornerShape(14.dp)) {
+                Card(modifier=Modifier.fillMaxWidth().padding(vertical=5.dp)
+                    .border(1.5.dp, border, RoundedCornerShape(14.dp)),
+                    colors=CardDefaults.cardColors(bg), shape=RoundedCornerShape(14.dp),
+                    onClick={if(!showRes) selected=idx}) {
                     Row(Modifier.padding(14.dp), verticalAlignment=Alignment.CenterVertically) {
                         Box(Modifier.size(30.dp).background(BgElevated,CircleShape),
                             contentAlignment=Alignment.Center) {
@@ -144,7 +143,7 @@ fun QuizScreen(vm: AppViewModel = viewModel()) {
 
             // Explanation
             AnimatedVisibility(visible=showRes) {
-                Card(Modifier.fillMaxWidth().padding(top=12.dp),
+                Card(modifier=Modifier.fillMaxWidth().padding(top=12.dp),
                     colors=CardDefaults.cardColors(if(isCorrect) Mint.copy(0.08f) else Coral.copy(0.08f)),
                     shape=RoundedCornerShape(14.dp),
                     border=BorderStroke(1.dp, if(isCorrect) Mint.copy(0.3f) else Coral.copy(0.3f))) {
